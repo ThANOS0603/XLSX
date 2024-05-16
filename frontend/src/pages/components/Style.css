@@ -1,0 +1,21 @@
+.excel-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    border: 1px solid #ddd;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.cell > .ql-container {
+    width: 100%;
+    height: auto;
+}
