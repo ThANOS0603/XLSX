@@ -51,25 +51,28 @@ function ExcelManager() {
         const worksheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[worksheetName];
         const excelData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-        const headers = excelData[0].map((col, index) => ({
+
+        const headers = excelData[0].map((header, index) => ({
             key: index.toString(),
-            name: col.toString(),
+            name: header.toString(),
             editable: true,
             resizable: true,
             width: 150,
         }));
+
         const rowsData = excelData.slice(1).map((row) =>
             row.reduce((rowData, cell, index) => {
-                rowData[headers[index].key] = cell;
+                rowData[index.toString()] = cell;
                 return rowData;
             }, {})
         );
+
         setColumns(headers);
         setRows(rowsData);
     };
 
     const handleFileUpdate = async () => {
-        const ws = XLSX.utils.json_to_sheet(rows);
+        const ws = XLSX.utils.json_to_sheet(rows, { header: columns.map(col => col.name) });
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
         const updatedFile = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
@@ -99,7 +102,7 @@ function ExcelManager() {
     };
 
     const handleSave = async () => {
-        const ws = XLSX.utils.json_to_sheet(rows);
+        const ws = XLSX.utils.json_to_sheet(rows, { header: columns.map(col => col.name) });
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
         const updatedFile = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });

@@ -1,8 +1,9 @@
 import React from 'react';
+import './ExcelResult.css';
 
 function ExcelResult({ excelColumns, excelRows, loading, setRows }) {
     return (
-        <div>
+        <div className="table-container">
             {loading ? (
                 <p>Loading...</p>
             ) : (
@@ -10,7 +11,7 @@ function ExcelResult({ excelColumns, excelRows, loading, setRows }) {
                     <thead>
                         <tr>
                             {excelColumns.map((col) => (
-                                <th key={col.key}>{col.name}</th>
+                                <th key={col.key} className="sticky-header">{col.name}</th>
                             ))}
                         </tr>
                     </thead>

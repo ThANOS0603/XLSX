@@ -1,0 +1,27 @@
+.table-container {
+    position: relative;
+    max-height: 400px; /* Adjust this height as needed */
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: green;
+    color: white;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+th {
+    text-align: left;
+}
