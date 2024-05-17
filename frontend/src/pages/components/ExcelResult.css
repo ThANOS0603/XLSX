@@ -1,7 +1,13 @@
 .table-container {
     position: relative;
     max-height: 400px; /* Adjust this height as needed */
-    overflow-y: auto;
+    overflow-y: scroll; /* Ensure vertical scrolling is enabled */
+    overflow-x: auto;   /* Ensure horizontal scrolling is enabled */
+    scrollbar-width: none; /* For Firefox */
+}
+
+.table-container::-webkit-scrollbar {
+    width: 0;  /* Hide vertical scrollbar for Chrome, Safari, and Opera */
 }
 
 table {
